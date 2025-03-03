@@ -28,7 +28,7 @@ let s:hdr = '###################################################################
 let s:arg = 'argparser = argparse.ArgumentParser(prog="\<%:t:r\>", description = "\:")\n' .
           \ 'argparser.add_argument("arg", type=str, help="")\n' .
           \ 'argparser.add_argument("-r", "--recurse" , type=int, nargs="?", default=0 , const=2, help="")\n' .
-          \ 'argparser.add_argument("-o", "--matchonly", default=False, const=True, action="store_const", help="")' .
+          \ 'argparser.add_argument("-o", "--matchonly", default=False, const=True, action="store_const", help="")\n' .
           \ 'args = argparser.parse_args()'
 
 let s:autocomplete_matches = [
