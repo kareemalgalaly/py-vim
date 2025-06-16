@@ -36,7 +36,7 @@ let s:autocomplete_matches = [
  \      ['\v\('.s:eol                            , '\N\:\n)'                                        ],
  \      ['\v\['.s:eol                            , '\N\:\n]'                                        ],
  \      ['\v# (.*)'.s:eol                        , '\!## \1 \(repeat("-",61-col("."))\)'            ],
- \      ['\vdesc\s+(\w+)\s+(\w+)\s*(.*)$'        , '\!# \(repeat("-",51-col("."))\)\n# \1: \2\n# \(repeat("-",51-col("."))\)\n'],
+ \      ['\vdesc\s+(\w+)\s+(\w+)\s*(.*)$'        , '\!# \(repeat("-",51-col("."))\)\n# \1: \2\n# - \:\n# \(repeat("-",51-col("."))\)\n'],
  \      ['#'                                     , '\!'.s:com                                       ],
  \      ['\vhead'                                , '\!'.s:hdr                                       ],
  \      ['args'                                  , '\!'.s:arg                                       ],
