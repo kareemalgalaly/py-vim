@@ -43,7 +43,4 @@ let s:autocomplete_matches = [
  \      ['main'                                  , '\!if __name__ == "__main__":\n\:'               ],
  \ ]
 
-if has_key(g:, "autocomplete_matches")
-    call autocomplete#register("python", s:autocomplete_matches)
-endif
-
+if exists('*autocomplete#register') | call autocomplete#register("python", s:autocomplete_matches) | endif
