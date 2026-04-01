@@ -10,7 +10,7 @@ source $VIMRUNTIME/syntax/python.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight Groups
 
-syn keyword pythonTodo CANCELLED DONE contained
+syn keyword pythonTodo CANCELLED DONE containedin=pythonComment contained
 
 "syn match pyNum  '\<0b\(_*[01]\+\)\+\>'
 "syn match pyNum  '\<0x\(_*[0-9abcdefABCDEF]\+\)\+\>' \x

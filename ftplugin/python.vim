@@ -18,29 +18,24 @@ source $VIMRUNTIME/ftplugin/python.vim
 
 let s:eol = '\s*(//.*)?$'
 let s:com = '## ' . repeat("-", 60-3)
-let s:hdr = '###############################################################################\n' .
-          \ '# File        : \<%\>\n' .
-          \ '# Author      : \<$USER\>\n' .
-          \ '# Created     : \d\n' .
-          \ '# Description : \n' .
-          \ '###############################################################################\n\:\n'
 
 let s:arg = 'import argparse\n\nargparser = argparse.ArgumentParser(prog="\<%:t:r\>", description = "\:")\n' .
           \ 'argparser.add_argument("arg", type=str, help="")\n' .
-          \ 'argparser.add_argument("-r", "--recurse" , type=int, nargs="?", default=0 , const=2, help="")\n' .
+          \ 'argparser.add_argument("optarg", type=str, nargs="?", help="")\n' .
+          \ 'argparser.add_argument("-r", "--recurse" , type=int, nargs="?", default=0, const=2, help="")\n' .
           \ 'argparser.add_argument("-o", "--matchonly", default=False, const=True, action="store_const", help="")\n' .
+          \ 'argparser.add_argument("remainder", nargs=argparse.REMAINDER, help="")\n' .
           \ 'args = argparser.parse_args()'
+
+let s:log = 'import logging\nlogger = logging.getLogger(__name__)\n'
 
 let s:autocomplete_matches = [
  \      ['\v\{'.s:eol                            , '\N\:\n}'                                        ],
  \      ['\v\('.s:eol                            , '\N\:\n)'                                        ],
  \      ['\v\['.s:eol                            , '\N\:\n]'                                        ],
- \      ['\v# (.*)'.s:eol                        , '\!## \1 \(repeat("-",61-col("."))\)'            ],
- \      ['\vdesc\s+(\w+)\s+(\w+)\s*(.*)$'        , '\!# \(repeat("-",51-col("."))\)\n# \1: \2\n# - \:\n# \(repeat("-",51-col("."))\)\n'],
- \      ['#'                                     , '\!'.s:com                                       ],
- \      ['\vhead'                                , '\!'.s:hdr                                       ],
  \      ['args'                                  , '\!'.s:arg                                       ],
- \      ['main'                                  , '\!if __name__ == "__main__":\n\:'               ],
- \ ]
+ \      ['log'                                   , '\!'.s:log                                       ],
+ \      ['main'                                  , '\!if __name__ == "__main__":\N\:'               ],
+ \ ] + autocomplete#common("#")
 
 if exists('*autocomplete#register') | call autocomplete#register("python", s:autocomplete_matches) | endif
